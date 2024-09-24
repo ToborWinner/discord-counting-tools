@@ -11,15 +11,15 @@ public abstract class SubtractPowersOfTwo extends Generator {
 
 	@Override
 	public String generate(int n) {
-		int logarithm = (int) Math.ceil(Math.log(n) / Math.log(2));
+		int currentExponent = (int) Math.ceil(Math.log(n) / Math.log(2));
 
-		String result = getPowerOfTwo(logarithm);
+		String result = getPowerOfTwo(currentExponent);
 
-		int converted = (int) Math.pow(2, logarithm) - n;
+		int offset = (int) Math.pow(2, currentExponent) - n;
 
-		while (n > 0) {
-			int currentExponent = (int) (Math.log(converted) / Math.log(2));
-			converted -= Math.pow(2, currentExponent);
+		while (offset > 0) {
+			currentExponent = (int) (Math.log(offset) / Math.log(2));
+			offset -= Math.pow(2, currentExponent);
 
 			result += "-" + getPowerOfTwo(currentExponent);
 		}
