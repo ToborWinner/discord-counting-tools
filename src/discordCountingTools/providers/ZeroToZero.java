@@ -1,4 +1,6 @@
-package discordCountingTools.generators;
+package discordCountingTools.providers;
+
+import discordCountingTools.generators.SubtractPowersOfTwo;
 
 public class ZeroToZero extends SubtractPowersOfTwo {
 

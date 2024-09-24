@@ -1,12 +1,13 @@
 package discordCountingTools;
 
-import discordCountingTools.generators.ZeroToZero;
 import discordCountingTools.Generator;
+import discordCountingTools.providers.ComplementZeroOne;
+import discordCountingTools.providers.ZeroToZero;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Generator test = new ZeroToZero();
+		Generator test = new ComplementZeroOne();
 		int num = 6;
 
 		if (!test.meetsRequirements(num)) {
