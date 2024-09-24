@@ -25,11 +25,11 @@
             jdk
             # maven
           ];
+
+          shellHook = ''
+            exec zsh
+          '';
         };
       });
-
-      shellHook = ''
-        exec zsh
-      '';
   };
 }
