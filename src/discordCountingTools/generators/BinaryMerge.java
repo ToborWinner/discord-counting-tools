@@ -3,6 +3,8 @@ package discordCountingTools.generators;
 import java.util.ArrayList;
 import java.util.ArrayList;
 
+import discordCountingTools.Generator;
+
 public abstract class BinaryMerge extends Generator {
 
 	/**
