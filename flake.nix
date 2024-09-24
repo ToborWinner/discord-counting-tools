@@ -12,10 +12,8 @@
     in
     {
       overlays.default =
-        final: prev: rec {
+        final: prev: {
           jdk = prev."jdk${toString javaVersion}";
-          # maven = prev.maven.override { jdk_headless = jdk; };
-          # gradle = prev.gradle.override { java = jdk; };
         };
 
       devShells = forEachSupportedSystem ({ pkgs }: {
@@ -31,5 +29,51 @@
           '';
         };
       });
-  };
+
+      packages = forEachSupportedSystem({pkgs}: {
+         default = pkgs.stdenv.mkDerivation {
+       pname = "discord-counting-tools";
+       version = "1.0.0";
+       src = ./.;
+
+        meta = {
+          description = "A Java program to generate weird ways to count using a Discord bot";
+          license = "MIT";
+       };
+  
+       buildInputs = [ pkgs.openjdk ];
+       nativeBuildInputs = [ pkgs.makeWrapper ];
+  
+       buildPhase = ''
+         echo "Compiling Java sources..."
+         mkdir -p build
+         find src -name '*.java' > sources.txt
+         javac -d build @sources.txt
+       '';
+  
+       installPhase = ''
+         echo "Packaging into JAR..."
+         mkdir -p $out/lib
+         cd build
+         jar cf $out/lib/discord-counting-tools.jar .
+         mkdir -p $out/bin
+
+         makeWrapper ${pkgs.jre}/bin/java $out/bin/discord-counting-tools \
+            --add-flags "-cp $out/lib/discord-counting-tools.jar discordCountingTools.Main"
+         echo "Build Successful."
+       '';
+
+    #    installPhase = ''
+    #      echo "Wrapping the application..."
+    #      mkdir -p $out/bin
+    #     makeWrapper ${pkgs.jre}/bin/java $out/bin/foo \
+    # --add-flags "-cp $out/share/java/foo.jar discordCountingTools/Main"
+    #      echo "Build Successful."
+    #    '';
+
+     };
+
+      });
+
+   };
 }
