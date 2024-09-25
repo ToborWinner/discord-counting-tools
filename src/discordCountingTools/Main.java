@@ -1,11 +1,12 @@
 package discordCountingTools;
 
 import discordCountingTools.providers.BinaryOneOr;
+import discordCountingTools.providers.BinaryPhiOr;
+import discordCountingTools.providers.BinaryTOr;
 import discordCountingTools.providers.ComplementZeroOne;
 import discordCountingTools.providers.ZeroToZero;
 import java.util.HashMap;
 import discordCountingTools.providers.BinaryDivOr;
-
 
 public class Main {
 
@@ -78,6 +79,8 @@ public class Main {
 		generators.put(new String[]{"div","d"}, new BinaryDivOr());
 		generators.put(new String[]{"0"}, new ZeroToZero());
 		generators.put(new String[]{"01","c"}, new ComplementZeroOne());
+		generators.put(new String[]{"phi","p"}, new BinaryPhiOr());
+		generators.put(new String[]{"tau","t"}, new BinaryTOr());
 
 		return generators;
 	}
