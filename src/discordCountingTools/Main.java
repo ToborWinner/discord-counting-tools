@@ -7,6 +7,7 @@ import discordCountingTools.providers.ComplementZeroOne;
 import discordCountingTools.providers.ZeroToZero;
 import java.util.HashMap;
 import discordCountingTools.providers.BinaryDivOr;
+import discordCountingTools.providers.ConstantSymbolsApproximation;
 
 public class Main {
 
@@ -81,6 +82,7 @@ public class Main {
 		generators.put(new String[]{"01","c"}, new ComplementZeroOne());
 		generators.put(new String[]{"phi","p"}, new BinaryPhiOr());
 		generators.put(new String[]{"tau","t"}, new BinaryTOr());
+		generators.put(new String[]{"s","sa"}, new ConstantSymbolsApproximation());
 
 		return generators;
 	}
