@@ -6,7 +6,14 @@ public class BinaryChaosPlus extends BinaryMerge {
 
 	@Override
 	protected String getPowerOfTwo(int n) {
-		return "("+getRandomOne()+("×"+getRandomTwo()).repeat(n)+")";
+		String result = "("+getRandomOne();
+
+		for (int i = 0; i < n; i++) {
+			result += "×"+getRandomTwo();
+		}
+
+		result += ")";
+		return result;
 	}
 
 	@Override
