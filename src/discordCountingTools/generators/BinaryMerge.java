@@ -1,9 +1,8 @@
 package discordCountingTools.generators;
 
 import java.util.ArrayList;
-import java.util.ArrayList;
-
 import discordCountingTools.Generator;
+
 
 public abstract class BinaryMerge extends Generator {
 
@@ -29,7 +28,10 @@ public abstract class BinaryMerge extends Generator {
 
 		// Convert to binary digits
 		for (int i = highestPower; i >= 0; i--) {
-			if (current < power) continue;
+			if (current < power) {
+				power /= 2;
+				continue;
+			};
 			// We know this bit is 1. Add the generated string to powers
 			powers.add(getPowerOfTwo(i));
 			

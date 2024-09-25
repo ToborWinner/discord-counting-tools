@@ -1,9 +1,10 @@
 package discordCountingTools;
 
+import discordCountingTools.providers.BinaryOneOr;
 import discordCountingTools.providers.ComplementZeroOne;
 import discordCountingTools.providers.ZeroToZero;
 import java.util.HashMap;
-import discordCountingTools.providers.BinaryOneOr;
+import discordCountingTools.providers.BinaryDivOr;
 
 
 public class Main {
@@ -74,6 +75,7 @@ public class Main {
 		// TODO: Maybe automatically read providers folder.
 
 		generators.put(new String[]{"1"}, new BinaryOneOr());
+		generators.put(new String[]{"div","d"}, new BinaryDivOr());
 		generators.put(new String[]{"0"}, new ZeroToZero());
 		generators.put(new String[]{"01","c"}, new ComplementZeroOne());
 
