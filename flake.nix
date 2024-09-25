@@ -32,7 +32,7 @@
 
 				meta = {
 					description = "A Java program to generate weird ways to count using a Discord bot";
-					license = "MIT";
+					license = "agpl3Only";
 				};
   
 				buildInputs = [ pkgs.openjdk ];
