@@ -1,11 +1,12 @@
 package discordCountingTools.generators;
 
 import discordCountingTools.helpers.NamedValue;
+import discordCountingTools.Generator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import discordCountingTools.Generator;
+import java.util.ArrayList;
 
 public abstract class Approximation extends Generator {
 

@@ -8,6 +8,7 @@ import discordCountingTools.providers.ZeroToZero;
 import java.util.HashMap;
 import discordCountingTools.providers.BinaryDivOr;
 import discordCountingTools.providers.ConstantSymbolsApproximation;
+import discordCountingTools.providers.BinaryChaosPlus;
 
 public class Main {
 
@@ -83,6 +84,7 @@ public class Main {
 		generators.put(new String[]{"phi","p"}, new BinaryPhiOr());
 		generators.put(new String[]{"tau","t"}, new BinaryTOr());
 		generators.put(new String[]{"s","sa"}, new ConstantSymbolsApproximation());
+                generators.put(new String[]{"x","chaos"}, new BinaryChaosPlus());
 
 		return generators;
 	}

@@ -3,7 +3,6 @@ package discordCountingTools.generators;
 import java.util.ArrayList;
 import discordCountingTools.Generator;
 
-
 public abstract class BinaryMerge extends Generator {
 
 	/**
@@ -16,6 +15,20 @@ public abstract class BinaryMerge extends Generator {
 	 * Add the power of two to a string containing the rest of the powers.
 	 */
 	protected abstract String addPower(String a, String b);
+
+	/**
+	 * Get a suffix
+	 */
+	protected String getSuffix() {
+		return "";
+	}
+
+	/**
+	 * Get a prefix
+	 */
+	protected String getPrefix() {
+		return "";
+	}
 
 	@Override
 	public String generate(int n) {
@@ -49,7 +62,7 @@ public abstract class BinaryMerge extends Generator {
 			result = addPower(result, powers.get(i));
 		}
 
-		return result;
+		return getPrefix()+result+getSuffix();
 	}
 
 	@Override
