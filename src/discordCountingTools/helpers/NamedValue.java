@@ -139,10 +139,18 @@ public class NamedValue {
 		return variants.get(keyArray[new Random().nextInt(keyArray.length)]);	
 	}
 	
-	// returns a random NamedValue containing filter in its description
-	public NamedValue getRandom(String filter) {
-		String[] keyArray = variants.keySet().stream().filter(w -> w.contains(filter)).toArray(String[]::new);
-		// handle cases with no matches
+	// Returns a random NamedValue containing all of the words in filter.
+	// Words may be supplied as a single String, separated by spaces.
+	public NamedValue getRandom(String filterList) {
+		String[] keyArray = variants.keySet().stream().filter(w -> {
+			for (String filter : filterList.split(" ")) {
+				if (!w.contains(filter)) {
+					return false;
+				}
+			}
+			return true;
+		}).toArray(String[]::new);
+		// Handle cases with no matches.
 		if (keyArray.length == 0) {
 			return null;
 		}
