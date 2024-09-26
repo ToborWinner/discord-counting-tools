@@ -27,7 +27,7 @@ final public class Constants {
 	 * MIXEDCASE refers to Unicode characters described as "symbols".
 	 */
 	
-	public static NamedValue PI = new NamedValue("pi", Math.PI, new HashMap<String, NamedValue>() {{
+	public static NamedValueList PI = new NamedValueList("pi", Math.PI, new HashMap<String, NamedValue>() {{
 		put("TEXT UPPERCASE",                            new NamedValue("PI", Math.PI));
 		put("TEXT LOWERCASE",                            new NamedValue("pi", Math.PI));
 		put("TEXT MIXEDCASE",                            new NamedValue("Pi", Math.PI));
@@ -53,7 +53,7 @@ final public class Constants {
 		put("MATHEMATICAL ITALIC BOLD MIXEDCASE SANS",   new NamedValue("𝟉", Math.PI));
 		}});
 	
-	public static NamedValue TAU = new NamedValue("tau", Math.TAU, new HashMap<String, NamedValue>() {{
+	public static NamedValueList TAU = new NamedValueList("tau", Math.TAU, new HashMap<String, NamedValue>() {{
 		put("TEXT UPPERCASE",                            new NamedValue("TAU", Math.TAU));
 		put("TEXT LOWERCASE",                            new NamedValue("tau", Math.TAU));
 		put("TEXT MIXEDCASE",                            new NamedValue("Tau", Math.TAU));
@@ -71,7 +71,7 @@ final public class Constants {
 		put("MATHEMATICAL ITALIC BOLD LOWERCASE SANS",   new NamedValue("𝞽", Math.TAU));	
 	}});
 	
-	public static NamedValue GAMMA = new NamedValue("γ", 0.577215664901532, new HashMap<String, NamedValue>() {{
+	public static NamedValueList GAMMA = new NamedValueList("γ", 0.577215664901532, new HashMap<String, NamedValue>() {{
 		put("REGULAR ROMAN LIGHT UPPERCASE SERIF",       new NamedValue("Γ", 0.577215664901532));
 		put("REGULAR ROMAN LIGHT LOWERCASE SERIF",       new NamedValue("γ", 0.577215664901532));
 		put("MATHEMATICAL ROMAN BOLD UPPERCASE SERIF",   new NamedValue("𝚪", 0.577215664901532));
@@ -89,7 +89,7 @@ final public class Constants {
 		put("SUBSCRIPT ROMAN LIGHT LOWERCASE SANS",      new NamedValue("ᵧ", 0.577215664901532));
 	}});
 		
-	public static NamedValue PHI = new NamedValue("phi", 1.618033988749895, new HashMap<String, NamedValue>() {{
+	public static NamedValueList PHI = new NamedValueList("phi", 1.618033988749895, new HashMap<String, NamedValue>() {{
 		put("TEXT UPPERCASE",                            new NamedValue("PHI", 1.618033988749895));
 		put("TEXT LOWERCASE",                            new NamedValue("phi", 1.618033988749895));
 		put("TEXT MIXEDCASE",                            new NamedValue("Phi", 1.618033988749895));
@@ -113,7 +113,7 @@ final public class Constants {
 		put("MATHEMATICAL ITALIC BOLD MIXEDCASE SANS",   new NamedValue("𝟇", 1.618033988749895));
 	}});
 		
-	public static NamedValue E = new NamedValue("e", Math.E, new HashMap<String, NamedValue>() {{
+	public static NamedValueList E = new NamedValueList("e", Math.E, new HashMap<String, NamedValue>() {{
 		put("TEXT UPPCASE", new NamedValue("E", Math.E));
 		put("TEXT LOWERCASE", new NamedValue("e", Math.E));
 		put("SUBSCRIPT ROMAN LIGHT LOWERCASE SANS", new NamedValue("ₑ", Math.E));
