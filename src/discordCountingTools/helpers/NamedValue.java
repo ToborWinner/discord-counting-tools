@@ -1,8 +1,5 @@
 package discordCountingTools.helpers;
 
-import java.util.HashMap;
-import java.util.Random;
-
 public class NamedValue {
 	private String name;
 	private double value;

@@ -3,8 +3,6 @@ package discordCountingTools.helpers;
 import java.util.HashMap;
 import java.util.Random;
 
-import discordCountingTools.helpers.NamedValue;
-
 public class NamedValueList extends NamedValue {
 	private HashMap<String, NamedValue> variants;
 	
