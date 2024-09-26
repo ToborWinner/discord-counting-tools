@@ -18,14 +18,38 @@ public class NamedValueList extends NamedValue {
 	}
 	
 	public NamedValue getRandom() {
-		String[] keyArray = variants.keySet().toArray(String[]::new);
-		return variants.get(keyArray[new Random().nextInt(keyArray.length)]);	
+		return getRandom("");
 	}
 	
 	// Returns a random NamedValue containing all of the words in filter.
 	// Words may be supplied as a single String, separated by spaces.
 	public NamedValue getRandom(String filterList) {
-		String[] keyArray = variants.keySet().stream().filter(w -> {
+		String[] keyArray = getFilteredKeyArray(filterList);
+		if (keyArray.length == 0) {
+			return null;
+		}
+		return variants.get(keyArray[new Random().nextInt(keyArray.length)]);
+	}
+	
+	public RandomizedNamedValue getRandomizedNamedValue() {
+		return getRandomizedNamedValue("");
+	}
+	
+	// Returns a RandomizedNamedValue object, which on a getName()
+	// call returns a random name matching the filters.
+	public RandomizedNamedValue getRandomizedNamedValue(String filter) {
+		String[] keyArray = getFilteredKeyArray(filter);
+		String[] nameArray = new String[keyArray.length];
+		
+		for (int i = 0; i < keyArray.length; i++) {
+			nameArray[i] = getVariant(keyArray[i]).getName();
+		}
+		
+		return new RandomizedNamedValue(nameArray, getValue());
+	}
+	
+	private String[] getFilteredKeyArray(String filterList) {
+		return variants.keySet().stream().filter(w -> {
 			for (String filter : filterList.split(" ")) {
 				if (!w.contains(filter)) {
 					return false;
@@ -33,10 +57,5 @@ public class NamedValueList extends NamedValue {
 			}
 			return true;
 		}).toArray(String[]::new);
-		// Handle cases with no matches.
-		if (keyArray.length == 0) {
-			return null;
-		}
-		return variants.get(keyArray[new Random().nextInt(keyArray.length)]);
 	}
 }
