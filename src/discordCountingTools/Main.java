@@ -69,7 +69,17 @@ public class Main {
 			return;
 		}
 
-		String result = gen.generate(num);
+		String result = null;
+		int failsafe = 0;
+		while (result == null || result.length() >= 2000) {
+			result = gen.generate(num);
+			failsafe++;
+			if (failsafe > 100) {
+				System.out.println("Too many attempts.");
+				System.exit(1);
+			}
+		}
+
 		System.out.println(result);
 	}
 

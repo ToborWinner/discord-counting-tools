@@ -78,9 +78,8 @@ public abstract class Approximation extends Generator {
 				break;
 			}
 
-			if (current.getName().length() > 1500) {
-				System.out.println("Too long.");
-				System.exit(1);
+			if (current.getName().length() > 2000) {
+				break;
 			}
 
 			if (found) {
@@ -102,8 +101,7 @@ public abstract class Approximation extends Generator {
 			}
 
 			if (values.size() > 10000) {
-				System.out.println("Too big.");
-				System.exit(1);
+				break;
 			}
 		}
 
@@ -113,7 +111,7 @@ public abstract class Approximation extends Generator {
 		for (NamedValue baseVal : baseValues) {
 			result = result.replaceAll(Pattern.quote("("+baseVal.getName()+")"), baseVal.getName());
 		}
-			
+
 		return result;
 	}
 
