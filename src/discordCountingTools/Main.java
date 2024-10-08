@@ -61,7 +61,7 @@ public class Main {
 		if (mode.equals("rand")) {
 			gen = getRandomGenerator(generators, num, null);
 		} else if (mode.equals("classic")) {
-			gen = getRandomGenerator(generators, num, "x");
+			gen = getRandomGenerator(generators, num, "x v");
 		} else {
 			gen = getGeneratorFromKey(generators, mode);
 		}
@@ -116,8 +116,7 @@ public class Main {
 		List<Generator> validGenerators = generators.entrySet()
 				.stream()
 				.filter(entry -> entry.getValue().meetsRequirements(n)
-						&& (filter == null || !Arrays.asList(entry.getKey())
-								.contains(filter)))
+						&& (filter == null || !hasIt(entry.getKey(), filter)))
 				.map(Map.Entry::getValue)
 				.collect(Collectors.toList());
 
@@ -134,5 +133,14 @@ public class Main {
 			}
 		}
 		return null; // Return null if no match is found
+	}
+
+	private static boolean hasIt(String[] keys, String filter) {
+		List<String> keyList = Arrays.asList(keys);
+		for (String element : filter.split(" ")) {
+			if (keyList.contains(element))
+				return true;
+		}
+		return false;
 	}
 }
