@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import discordCountingTools.providers.BinaryDivOr;
 import discordCountingTools.providers.ConstantSymbolsApproximation;
+import discordCountingTools.providers.VariableSymbolsApproximation;
 import discordCountingTools.providers.BinaryChaosPlus;
 
 public class Main {
@@ -101,6 +102,7 @@ public class Main {
 		generators.put(new String[] { "phi", "p" }, new BinaryPhiOr());
 		generators.put(new String[] { "tau", "t" }, new BinaryTOr());
 		generators.put(new String[] { "s", "sa" }, new ConstantSymbolsApproximation());
+		generators.put(new String[] { "v", "va" }, new VariableSymbolsApproximation());
 		generators.put(new String[] { "x", "chaos" }, new BinaryChaosPlus());
 
 		return generators;
