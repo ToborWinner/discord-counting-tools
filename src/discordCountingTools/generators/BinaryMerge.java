@@ -33,7 +33,7 @@ public abstract class BinaryMerge extends Generator {
 	@Override
 	public String generate(int n) {
 		ArrayList<String> powers = new ArrayList<String>();
-		
+
 		int highestPower = (int) Math.floor(Math.log(n) / Math.log(2));
 
 		int power = (int) Math.pow(2, highestPower);
@@ -47,7 +47,7 @@ public abstract class BinaryMerge extends Generator {
 			};
 			// We know this bit is 1. Add the generated string to powers
 			powers.add(getPowerOfTwo(i));
-			
+
 			// Subtract the power of two
 			current -= power;
 
@@ -67,6 +67,6 @@ public abstract class BinaryMerge extends Generator {
 
 	@Override
 	public boolean meetsRequirements(int n) {
-		return true;
+		return n > 1;
 	}
 }

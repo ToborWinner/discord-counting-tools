@@ -6,6 +6,8 @@ import discordCountingTools.providers.BinaryTOr;
 import discordCountingTools.providers.ComplementZeroOne;
 import discordCountingTools.providers.ZeroToZero;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 import discordCountingTools.providers.BinaryDivOr;
 import discordCountingTools.providers.ConstantSymbolsApproximation;
 import discordCountingTools.providers.BinaryChaosPlus;
@@ -35,19 +37,6 @@ public class Main {
 			System.exit(1);
 		}
 
-		Generator gen;
-
-		if (mode == "rand") {
-			gen = getRandomGenerator(generators);
-		} else {
-			gen = getGeneratorFromKey(generators, mode);
-		}
-
-		if (gen == null) {
-			System.out.println("Generator not found.");
-			System.exit(1);
-		}
-
 		int num = -1;
 
 		// Parse the number
@@ -56,10 +45,23 @@ public class Main {
 		} catch (NumberFormatException e) {
 			System.out.println("Please provide a valid natural number.");
 			System.exit(1);
-        }
+		}
 
 		if (num < 1) {
 			System.out.println("Please provide a valid natural number.");
+			System.exit(1);
+		}
+
+		Generator gen;
+
+		if (mode == "rand") {
+			gen = getRandomGenerator(generators, num);
+		} else {
+			gen = getGeneratorFromKey(generators, mode);
+		}
+
+		if (gen == null) {
+			System.out.println("Generator not found.");
 			System.exit(1);
 		}
 
@@ -99,12 +101,17 @@ public class Main {
 		return generators;
 	}
 
-	private static Generator getRandomGenerator(HashMap<String[], Generator> generators) {
+	private static Generator getRandomGenerator(HashMap<String[], Generator> generators, int n) {
 		if (generators.isEmpty()) {
 			return null;
 		}
-		Object[] values = generators.values().toArray();
-		return (Generator) values[(int) Math.floor(Math.random() * values.length)];
+
+		List<Generator> validGenerators = generators.values().stream()
+			.filter(generator -> generator.meetsRequirements(n))
+			.collect(Collectors.toList());
+
+		// Object[] values = generators.values().toArray();
+		return validGenerators.get((int) Math.floor(Math.random() * validGenerators.size()));
 	}
 
 	private static Generator getGeneratorFromKey(HashMap<String[], Generator> generators, String mode) {

@@ -88,7 +88,8 @@ public abstract class Approximation extends Generator {
 			}
 
 			// Generate a new smaller value
-			for (NamedValue val : values) {
+			for (int i = 0; i < values.size(); i++) {
+				NamedValue val = values.get(i);
 				for (NamedValue baseVal : baseValues) {
 					if (val.getValue() / baseVal.getValue() < values.getLast().getValue()) {
 						values.add(new NamedValue(
