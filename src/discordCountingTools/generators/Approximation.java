@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.ArrayList;
 
 public abstract class Approximation extends Generator {
 
@@ -24,7 +23,7 @@ public abstract class Approximation extends Generator {
 		ArrayList<NamedValue> baseValues = new ArrayList<NamedValue>(getValues());
 		baseValues.sort((a, b) -> Double.compare(a.getValue(), b.getValue())); // Ascending, useful for later
 		ArrayList<NamedValue> values = new ArrayList<NamedValue>(baseValues);
-		String[] operations = new String[]{"+", "-", "*", "/"};
+		String[] operations = new String[] { "+", "-", "*", "/" };
 
 		// Populate the values ArrayList
 		NamedValue currentVal = getRandomElement(values);
@@ -32,6 +31,10 @@ public abstract class Approximation extends Generator {
 			String operation = getRandomElement(operations);
 			NamedValue val = getRandomElement(values);
 			currentVal = executeOperation(currentVal, val, operation);
+			if (currentVal.getValue() < 0.05 || currentVal.getValue() > 1000000000) {
+				currentVal = getRandomElement(values);
+				continue;
+			}
 			values.add(currentVal);
 
 			if (Math.random() < 0.9) {
@@ -42,11 +45,11 @@ public abstract class Approximation extends Generator {
 		ArrayList<NamedValue> temp = new ArrayList<NamedValue>(values);
 
 		// Filter out values that are the same
-		values = new ArrayList<NamedValue>(values.stream().filter(e -> temp.stream().noneMatch(a ->
-                    Math.round(e.getValue() * 1000) == Math.round(a.getValue() * 1000) &&
-                    a != e &&
-                    a.getName().length() <= e.getName().length()
-                ) && e.getValue() > 0).collect(Collectors.toList()));
+		values = new ArrayList<NamedValue>(values.stream().filter(e -> temp.stream()
+				.noneMatch(a -> Math.round(e.getValue() * 1000) == Math.round(a.getValue() * 1000) &&
+						a != e &&
+						a.getName().length() <= e.getName().length())
+				&& e.getValue() > 0).collect(Collectors.toList()));
 
 		// Sort them
 		values.sort((a, b) -> Double.compare(b.getValue(), a.getValue())); // Descending
@@ -60,19 +63,20 @@ public abstract class Approximation extends Generator {
 			boolean found = false;
 			for (NamedValue val : values) {
 				// Multiplication
-				if ((val.getValue()*current.getValue() <= n+maxError) && !first) {
-					current = new NamedValue("("+current.getName()+")*"+val.getName(), current.getValue() * val.getValue());
+				if ((val.getValue() * current.getValue() <= n + maxError) && !first) {
+					current = new NamedValue("(" + current.getName() + ")*" + val.getName(),
+							current.getValue() * val.getValue());
 					found = true;
 					break;
 				}
-				if (val.getValue()+current.getValue() > n+maxError) continue;
+				if (val.getValue() + current.getValue() > n + maxError)
+					continue;
 				if (first) {
 					current = val;
 				} else {
 					current = new NamedValue(
-						"("+current.getName()+")+"+val.getName(),
-						current.getValue()+val.getValue()
-					);
+							"(" + current.getName() + ")+" + val.getName(),
+							current.getValue() + val.getValue());
 				}
 				found = true;
 				break;
@@ -93,9 +97,8 @@ public abstract class Approximation extends Generator {
 				for (NamedValue baseVal : baseValues) {
 					if (val.getValue() / baseVal.getValue() < values.getLast().getValue()) {
 						values.add(new NamedValue(
-							"("+val.getValue()+")/"+baseVal.getName(),
-							val.getValue() / baseVal.getValue()
-						));
+								"(" + val.getValue() + ")/" + baseVal.getName(),
+								val.getValue() / baseVal.getValue()));
 						break;
 					}
 				}
@@ -110,7 +113,7 @@ public abstract class Approximation extends Generator {
 		String result = current.getName();
 
 		for (NamedValue baseVal : baseValues) {
-			result = result.replaceAll(Pattern.quote("("+baseVal.getName()+")"), baseVal.getName());
+			result = result.replaceAll(Pattern.quote("(" + baseVal.getName() + ")"), baseVal.getName());
 		}
 
 		return result;
@@ -123,6 +126,7 @@ public abstract class Approximation extends Generator {
 
 	/**
 	 * Return a random element of the input list
+	 * 
 	 * @param The input array
 	 */
 	private <T> T getRandomElement(List<T> array) {
@@ -131,6 +135,7 @@ public abstract class Approximation extends Generator {
 
 	/**
 	 * Return a random element of the input array
+	 * 
 	 * @param The input array
 	 */
 	private <T> T getRandomElement(T[] array) {
@@ -139,12 +144,13 @@ public abstract class Approximation extends Generator {
 
 	/**
 	 * Create a NamedValue showing the operation between a and b.
-	 * @param a The first value
-	 * @param b The second value
+	 * 
+	 * @param a         The first value
+	 * @param b         The second value
 	 * @param operation The operation to apply
 	 */
 	private NamedValue executeOperation(NamedValue a, NamedValue b, String operation) {
-		String newString = "("+a.getName()+")"+operation+"("+b.getName()+")";
+		String newString = "(" + a.getName() + ")" + operation + "(" + b.getName() + ")";
 		switch (operation) {
 			case "+":
 				return new NamedValue(newString, a.getValue() + b.getValue());
