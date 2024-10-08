@@ -6,7 +6,9 @@ import discordCountingTools.providers.BinaryTOr;
 import discordCountingTools.providers.ComplementZeroOne;
 import discordCountingTools.providers.ZeroToZero;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import discordCountingTools.providers.BinaryDivOr;
 import discordCountingTools.providers.ConstantSymbolsApproximation;
@@ -16,7 +18,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		if (args.length == 0 || args.length > 2) {
-			// TODO: Save somewhere in memory the current number and increment by 2 each time so you can count without inserting number.
+			// TODO: Save somewhere in memory the current number and increment by 2 each
+			// time so you can count without inserting number.
 			System.out.println("Please specify an argument. Usage: [mode] <num>");
 			System.exit(1);
 		}
@@ -54,8 +57,10 @@ public class Main {
 
 		Generator gen;
 
-		if (mode == "rand") {
-			gen = getRandomGenerator(generators, num);
+		if (mode.equals("rand")) {
+			gen = getRandomGenerator(generators, num, null);
+		} else if (mode.equals("classic")) {
+			gen = getRandomGenerator(generators, num, "x");
 		} else {
 			gen = getGeneratorFromKey(generators, mode);
 		}
@@ -89,28 +94,31 @@ public class Main {
 		HashMap<String[], Generator> generators = new HashMap<String[], Generator>();
 		// TODO: Maybe automatically read providers folder.
 
-		generators.put(new String[]{"1"}, new BinaryOneOr());
-		generators.put(new String[]{"div","d"}, new BinaryDivOr());
-		generators.put(new String[]{"0"}, new ZeroToZero());
-		generators.put(new String[]{"01","c"}, new ComplementZeroOne());
-		generators.put(new String[]{"phi","p"}, new BinaryPhiOr());
-		generators.put(new String[]{"tau","t"}, new BinaryTOr());
-		generators.put(new String[]{"s","sa"}, new ConstantSymbolsApproximation());
-                generators.put(new String[]{"x","chaos"}, new BinaryChaosPlus());
+		generators.put(new String[] { "1" }, new BinaryOneOr());
+		generators.put(new String[] { "div", "d" }, new BinaryDivOr());
+		generators.put(new String[] { "0" }, new ZeroToZero());
+		generators.put(new String[] { "01", "c" }, new ComplementZeroOne());
+		generators.put(new String[] { "phi", "p" }, new BinaryPhiOr());
+		generators.put(new String[] { "tau", "t" }, new BinaryTOr());
+		generators.put(new String[] { "s", "sa" }, new ConstantSymbolsApproximation());
+		generators.put(new String[] { "x", "chaos" }, new BinaryChaosPlus());
 
 		return generators;
 	}
 
-	private static Generator getRandomGenerator(HashMap<String[], Generator> generators, int n) {
+	private static Generator getRandomGenerator(HashMap<String[], Generator> generators, int n, String filter) {
 		if (generators.isEmpty()) {
 			return null;
 		}
 
-		List<Generator> validGenerators = generators.values().stream()
-			.filter(generator -> generator.meetsRequirements(n))
-			.collect(Collectors.toList());
+		List<Generator> validGenerators = generators.entrySet()
+				.stream()
+				.filter(entry -> entry.getValue().meetsRequirements(n)
+						&& (filter == null || !Arrays.asList(entry.getKey())
+								.contains(filter)))
+				.map(Map.Entry::getValue)
+				.collect(Collectors.toList());
 
-		// Object[] values = generators.values().toArray();
 		return validGenerators.get((int) Math.floor(Math.random() * validGenerators.size()));
 	}
 
