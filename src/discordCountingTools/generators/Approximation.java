@@ -17,6 +17,20 @@ public abstract class Approximation extends Generator {
 	 */
 	protected abstract List<NamedValue> getValues();
 
+	/**
+	 * Get a suffix
+	 */
+	protected String getSuffix() {
+		return "";
+	}
+
+	/**
+	 * Get a prefix
+	 */
+	protected String getPrefix() {
+		return "";
+	}
+
 	@Override
 	public String generate(int n) {
 		// Initiate values and operations
@@ -116,7 +130,7 @@ public abstract class Approximation extends Generator {
 			result = result.replaceAll(Pattern.quote("(" + baseVal.getName() + ")"), baseVal.getName());
 		}
 
-		return result;
+		return getPrefix() + result + getSuffix();
 	}
 
 	@Override

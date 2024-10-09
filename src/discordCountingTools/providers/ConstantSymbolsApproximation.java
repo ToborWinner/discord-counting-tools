@@ -10,9 +10,9 @@ public class ConstantSymbolsApproximation extends Approximation {
 	@Override
 	protected List<NamedValue> getValues() {
 		return List.of(
-			Constants.PI.getVariant("REGULAR ROMAN LIGHT LOWERCASE SERIF"),
-			Constants.TAU.getVariant("REGULAR ROMAN LIGHT LOWERCASE SERIF"),
-			Constants.PHI.getVariant("REGULAR ROMAN LIGHT LOWERCASE SERIF")
-		);
+				Constants.PI.getVariant("REGULAR ROMAN LIGHT LOWERCASE SERIF"),
+				Constants.TAU.getVariant("REGULAR ROMAN LIGHT LOWERCASE SERIF"),
+				Constants.PHI.getVariant("REGULAR ROMAN LIGHT LOWERCASE SERIF"),
+				Constants.GAMMA.getVariant("REGULAR ROMAN LIGHT LOWERCASE SERIF"));
 	}
 }
