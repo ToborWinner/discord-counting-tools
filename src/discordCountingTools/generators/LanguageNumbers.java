@@ -25,17 +25,17 @@ public abstract class LanguageNumbers extends Generator {
 
 	@Override
 	public String generate(int n) {
-		String result = getPrefix();
+		StringBuilder builder = new StringBuilder();
 
 		int current = n;
 		while (current > 0) {
 			int digit = current % 10;
-			result += getDigit(digit);
+			builder.append(getDigit(digit));
 			current /= 10;
 		}
 
-		result += getSuffix();
-		return result;
+		String result = builder.reverse().toString();
+		return getPrefix() + result + getSuffix();
 	}
 
 	@Override
