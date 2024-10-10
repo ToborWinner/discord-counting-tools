@@ -3,6 +3,7 @@ package discordCountingTools;
 import discordCountingTools.providers.BinaryOneOr;
 import discordCountingTools.providers.BinaryPhiOr;
 import discordCountingTools.providers.BinaryTOr;
+import discordCountingTools.providers.BinaryDoubleLineOr;
 import discordCountingTools.providers.ComplementZeroOne;
 import discordCountingTools.providers.ZeroToZero;
 import java.util.HashMap;
@@ -99,6 +100,7 @@ public class Main {
 
 		generators.put(new String[] { "1" }, new BinaryOneOr());
 		generators.put(new String[] { "div", "d" }, new BinaryDivOr());
+		generators.put(new String[] { "n" }, new BinaryDoubleLineOr());
 		generators.put(new String[] { "0" }, new ZeroToZero());
 		generators.put(new String[] { "01", "c" }, new ComplementZeroOne());
 		generators.put(new String[] { "phi", "p" }, new BinaryPhiOr());
