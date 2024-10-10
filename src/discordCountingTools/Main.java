@@ -62,7 +62,7 @@ public class Main {
 		if (mode.equals("rand")) {
 			gen = getRandomGenerator(generators, num, null);
 		} else if (mode.equals("classic")) {
-			gen = getRandomGenerator(generators, num, "x v");
+			gen = getRandomGenerator(generators, num, "x v e");
 		} else {
 			gen = getGeneratorFromKey(generators, mode);
 		}
