@@ -15,6 +15,7 @@ import discordCountingTools.providers.ConstantSymbolsApproximation;
 import discordCountingTools.providers.VariableSymbolsApproximation;
 import discordCountingTools.providers.EApproximation;
 import discordCountingTools.providers.BinaryChaosPlus;
+import discordCountingTools.providers.LanguageNumbersPrefixed;
 
 public class Main {
 
@@ -62,7 +63,7 @@ public class Main {
 		if (mode.equals("rand")) {
 			gen = getRandomGenerator(generators, num, null);
 		} else if (mode.equals("classic")) {
-			gen = getRandomGenerator(generators, num, "x v e");
+			gen = getRandomGenerator(generators, num, "x v e l");
 		} else {
 			gen = getGeneratorFromKey(generators, mode);
 		}
@@ -106,6 +107,7 @@ public class Main {
 		generators.put(new String[] { "e", "ee" }, new EApproximation());
 		generators.put(new String[] { "v", "va" }, new VariableSymbolsApproximation());
 		generators.put(new String[] { "x", "chaos" }, new BinaryChaosPlus());
+		generators.put(new String[] { "l", "language" }, new LanguageNumbersPrefixed());
 
 		return generators;
 	}
