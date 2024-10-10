@@ -256,16 +256,16 @@ final public class Constants {
 			put("TIBETAN LEFT-TO-RIGHT FULL 8", new NamedValue("༨", 8));
 			put("TIBETAN LEFT-TO-RIGHT FULL 9", new NamedValue("༩", 9));
 
-			put("URDU LEFT-TO-RIGHT FULL 0", new NamedValue("۰", 0));
-			put("URDU LEFT-TO-RIGHT FULL 1", new NamedValue("۱", 1));
-			put("URDU LEFT-TO-RIGHT FULL 2", new NamedValue("۲", 2));
-			put("URDU LEFT-TO-RIGHT FULL 3", new NamedValue("۳", 3));
-			put("URDU LEFT-TO-RIGHT FULL 4", new NamedValue("۴", 4));
-			put("URDU LEFT-TO-RIGHT FULL 5", new NamedValue("۵", 5));
-			put("URDU LEFT-TO-RIGHT FULL 6", new NamedValue("۶", 6));
-			put("URDU LEFT-TO-RIGHT FULL 7", new NamedValue("۷", 7));
-			put("URDU LEFT-TO-RIGHT FULL 8", new NamedValue("۸", 8));
-			put("URDU LEFT-TO-RIGHT FULL 9", new NamedValue("۹", 9));
+			put("URDU RIGHT-TO-LEFT FULL 0", new NamedValue("۰", 0));
+			put("URDU RIGHT-TO-LEFT FULL 1", new NamedValue("۱", 1));
+			put("URDU RIGHT-TO-LEFT FULL 2", new NamedValue("۲", 2));
+			put("URDU RIGHT-TO-LEFT FULL 3", new NamedValue("۳", 3));
+			put("URDU RIGHT-TO-LEFT FULL 4", new NamedValue("۴", 4));
+			put("URDU RIGHT-TO-LEFT FULL 5", new NamedValue("۵", 5));
+			put("URDU RIGHT-TO-LEFT FULL 6", new NamedValue("۶", 6));
+			put("URDU RIGHT-TO-LEFT FULL 7", new NamedValue("۷", 7));
+			put("URDU RIGHT-TO-LEFT FULL 8", new NamedValue("۸", 8));
+			put("URDU RIGHT-TO-LEFT FULL 9", new NamedValue("۹", 9));
 
 			put("KHMER LEFT-TO-RIGHT FULL 0", new NamedValue("០", 0));
 			put("KHMER LEFT-TO-RIGHT FULL 1", new NamedValue("១", 1));
