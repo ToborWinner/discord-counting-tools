@@ -1,24 +1,11 @@
 package discordCountingTools;
 
-import discordCountingTools.providers.BinaryOneOr;
-import discordCountingTools.providers.BinaryPhiOr;
-import discordCountingTools.providers.BinaryTOr;
-import discordCountingTools.providers.BinaryEXor;
-import discordCountingTools.providers.BinaryESubscriptXor;
-import discordCountingTools.providers.BinaryDoubleLineOr;
-import discordCountingTools.providers.ComplementZeroOne;
-import discordCountingTools.providers.ZeroToZero;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import discordCountingTools.providers.BinaryDivOr;
-import discordCountingTools.providers.ConstantSymbolsApproximation;
-import discordCountingTools.providers.VariableSymbolsApproximation;
-import discordCountingTools.providers.EApproximation;
-import discordCountingTools.providers.BinaryChaosPlus;
-import discordCountingTools.providers.LanguageNumbersPrefixed;
+import discordCountingTools.providers.*;
 
 public class Main {
 
