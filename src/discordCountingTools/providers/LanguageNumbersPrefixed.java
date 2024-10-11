@@ -1,8 +1,6 @@
 package discordCountingTools.providers;
 
 import discordCountingTools.helpers.Constants;
-import discordCountingTools.helpers.NamedValue;
-import java.util.List;
 import discordCountingTools.generators.LanguageNumbers;
 
 public class LanguageNumbersPrefixed extends LanguageNumbers {
