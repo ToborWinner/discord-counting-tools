@@ -135,7 +135,7 @@ final public class Constants {
 	});
 
 	/*
-	 * Numbers are defined in the following way using tags.
+	 * Digits are defined in the following way using tags.
 	 * NAME => Signifies the name of the language/numerals
 	 * LEFT-TO-RIGHT - RIGHT-TO-LEFT => Whether they are usually read left to right
 	 * or right to left
@@ -144,7 +144,7 @@ final public class Constants {
 	 * [0..9] => Signifies the digit
 	 */
 
-	public static NamedValueList NUMBERS = new NamedValueList("0", 0, new HashMap<String, NamedValue>() {
+	public static NamedValueList DIGITS = new NamedValueList("0", 0, new HashMap<String, NamedValue>() {
 		{
 			put("WESTERN-ARABIC LEFT-TO-RIGHT FULL 0", new NamedValue("0", 0));
 			put("WESTERN-ARABIC LEFT-TO-RIGHT FULL 1", new NamedValue("1", 1));
