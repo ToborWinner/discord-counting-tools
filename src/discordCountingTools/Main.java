@@ -92,7 +92,7 @@ public class Main {
 		generators.put(new String[] { "n" }, new BinaryDoubleLineOr());
 		generators.put(new String[] { "0" }, new ZeroToZero());
 		generators.put(new String[] { "01", "c" }, new ComplementZeroOne());
-		generators.put(new String[] { "phi", "p" }, new BinaryPhiOr());
+		generators.put(new String[] { "gamma", "g" }, new BinaryGammaOr());
 		generators.put(new String[] { "tau", "t" }, new BinaryTOr());
 		generators.put(new String[] { "rs" }, new BinaryESubscriptXor());
 		generators.put(new String[] { "r" }, new BinaryEXor());
