@@ -94,8 +94,8 @@ public class Main {
 		generators.put(new String[] { "01", "c" }, new ComplementZeroOne());
 		generators.put(new String[] { "gamma", "g" }, new BinaryGammaOr());
 		generators.put(new String[] { "tau", "t" }, new BinaryTOr());
-		generators.put(new String[] { "rs" }, new BinaryESubscriptXor());
-		generators.put(new String[] { "r" }, new BinaryEXor());
+		// generators.put(new String[] { "rs" }, new BinaryESubscriptXor());
+		// generators.put(new String[] { "r" }, new BinaryEXor());
 		generators.put(new String[] { "s", "sa" }, new ConstantSymbolsApproximation());
 		generators.put(new String[] { "e", "ee" }, new EApproximation());
 		generators.put(new String[] { "v", "va" }, new VariableSymbolsApproximation());

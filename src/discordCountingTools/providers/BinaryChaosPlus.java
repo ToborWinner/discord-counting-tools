@@ -28,7 +28,7 @@ public class BinaryChaosPlus extends BinaryMerge {
 
 	@Override
 	protected String getSuffix() {
-		return "-0\\-~~1__";
+		return "-0/-~~1__";
 	}
 
 	private String getRandomOne() {
