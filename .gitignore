@@ -89,3 +89,4 @@ nb-configuration.xml
 ##############################
 *.log
 result/
+.direnv/
