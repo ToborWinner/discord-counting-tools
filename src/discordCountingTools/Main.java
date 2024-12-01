@@ -101,6 +101,7 @@ public class Main {
 		generators.put(new String[] { "v", "va" }, new VariableSymbolsApproximation());
 		generators.put(new String[] { "x", "chaos" }, new BinaryChaosPlus());
 		generators.put(new String[] { "l", "language" }, new LanguageNumbersPrefixed());
+		generators.put(new String[] { "fsg"}, new FiniteSeriesGamma());
 
 		return generators;
 	}
