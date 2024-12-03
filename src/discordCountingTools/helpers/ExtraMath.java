@@ -1,25 +1,47 @@
 package discordCountingTools.helpers;
 
 public class ExtraMath {
-	// Returns an approximation of (x-1)! using Stirling's approximation
-	// The error becomes < 0.01 at about x = 1.5
-	// gamma(x) < (x-1)! for all valid x
+	// Returns an approximation of (x-1)! using an extended Stirling's approximation.
+	// The value of the approximation is evaluated on the interval [3, 4) due to the
+	// error being the smallest in that interval, then shifted to the correct value
+	// using standard rules for the gamma function.
+	// As such, error is smallest for x in [3, 4) and goes up with distance to the interval.
+	// This implementation is based on G. Nemes, Asymptotic Expansions for Integrals.
+	
+	// To improve accuracy beyond this point, adding more stirling coefficients is sufficient.
+	// However, it is probably a good idea to switch this over to bigdecimal at that point.
+	private static final double[] stirlingCoefficients = {1, 1.0/12, 1.0/288, -139.0/51840, -571.0/2488320};
 	public static double gamma(double x) {
-		x--;
-		if (x % 1 == 0) {	
-			double result = 1;
-			while (x > 1) {
-				result = result * x;
-				x--;
+		double difference = Math.floor(x-3);
+		x -= difference;
+		double value;
+		
+		if (x == 3) {
+			value = 2;
+		} else {
+			value = Math.sqrt(2 * Math.PI) * Math.pow(x, x-0.5) * Math.exp(-x);
+			double coefficientSum = 0;
+			for (int k = 0; k < stirlingCoefficients.length; k++) {
+				coefficientSum += stirlingCoefficients[k] / Math.pow(x, k);
 			}
-			return result;
+			value *= coefficientSum;
 		}
-		return Math.sqrt(2 * Math.PI * x) * Math.pow((x / Math.E), x) * Math.exp(1 / (12 * x) - 1 / (360 * Math.pow(x, 3))) ;
+		
+		x += difference;
+		
+		// Readjust solution according to difference
+		while (difference < 0) {
+			value /= (x - difference - 1);
+			difference++;
+		}
+		while (difference > 0) {
+			value *= (x - difference);
+			difference--;
+		}
+		return value;
 	}
 	
 	// Returns an approximation of the digamma function
-	// Since this relies on the accuracy of gamma,
-	// its error only becomes < 0.01 at about x = 1.8
 	public static double digamma(double x) {
 		return (gamma(x+0.01) - gamma(x-0.01)) / (0.02 * gamma(x));
 	}
