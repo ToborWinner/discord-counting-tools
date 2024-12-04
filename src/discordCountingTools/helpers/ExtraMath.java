@@ -61,9 +61,10 @@ public class ExtraMath {
 		if (x2 == 1) {
 			return y+1;
 		}
-		
+		double gammaY;
 		for (int i = 1; i < stepCount + 4; i++) {
-			y -= (gamma(y)-x) / (gamma(y)*digamma(y));
+			gammaY = gamma(y);
+			y -= (gammaY-x) / (gammaY*digamma(y));
 		}
 		return y;
 	}
