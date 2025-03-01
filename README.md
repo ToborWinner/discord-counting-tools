@@ -1,5 +1,4 @@
 # discord-counting-tools
-## Not all modes work at the moment because they updated the math in the bot. Might be fixed soon.
 A script to generate weird messages that are valid for a Discord counting bot.
 
 ## Usage

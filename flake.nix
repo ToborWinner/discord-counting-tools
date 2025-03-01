@@ -3,7 +3,7 @@
 
   outputs = { self, nixpkgs }:
     let
-      javaVersion = 22; # Change this value to update the whole stack
+      javaVersion = 23;
 
       supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
       forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
@@ -36,22 +36,22 @@
           nativeBuildInputs = [ pkgs.makeWrapper ];
 
           buildPhase = ''
-            					echo "Compiling Java sources..."
-            					mkdir -p build
-            					find src -name '*.java' > sources.txt
-            					javac -d build @sources.txt
-            				'';
+            echo "Compiling Java sources..."
+            mkdir -p build
+            find src -name '*.java' > sources.txt
+            javac -d build @sources.txt
+          '';
 
           installPhase = ''
-            					echo "Packaging into JAR..."
-            					mkdir -p $out/lib
-            					cd build
-            					jar cf $out/lib/discord-counting-tools.jar .
-            					mkdir -p $out/bin
-            					makeWrapper ${pkgs.jre}/bin/java $out/bin/discord-counting-tools \
-            						--add-flags "-cp $out/lib/discord-counting-tools.jar discordCountingTools.Main"
-            					echo "Build Successful."
-            				'';
+            echo "Packaging into JAR..."
+            mkdir -p $out/lib
+            cd build
+            jar cf $out/lib/discord-counting-tools.jar .
+            mkdir -p $out/bin
+            makeWrapper ${pkgs.jre}/bin/java $out/bin/discord-counting-tools \
+              --add-flags "-cp $out/lib/discord-counting-tools.jar discordCountingTools.Main"
+            echo "Build Successful."
+          '';
         };
       });
     };
