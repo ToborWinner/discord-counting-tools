@@ -11,8 +11,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		if (args.length == 0 || args.length > 2) {
-			// TODO: Save somewhere in memory the current number and increment by 2 each
-			// time so you can count without inserting number.
 			System.out.println("Please specify an argument. Usage: [mode] <num>");
 			System.exit(1);
 		}
@@ -101,7 +99,8 @@ public class Main {
 		generators.put(new String[] { "v", "va" }, new VariableSymbolsApproximation());
 		generators.put(new String[] { "x", "chaos" }, new BinaryChaosPlus());
 		generators.put(new String[] { "l", "language" }, new LanguageNumbersPrefixed());
-		generators.put(new String[] { "fsg"}, new FiniteSeriesGamma());
+		generators.put(new String[] { "exp", "english" }, new EnglishExponentiation());
+		generators.put(new String[] { "fsg" }, new FiniteSeriesGamma());
 
 		return generators;
 	}
