@@ -1,6 +1,7 @@
 package discordCountingTools.providers;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 import discordCountingTools.generators.FiniteSeries;
 import discordCountingTools.helpers.ExtraMath;
@@ -8,6 +9,7 @@ import discordCountingTools.helpers.ExtraMath;
 public class FiniteSeriesGamma extends FiniteSeries {
 
 	double eps;
+	DecimalFormat df;
 	
 	// Approximates the derivative of the antiderivative of the gamma function for n.
 	// The antiderivative is calculated using a Riemann sum
@@ -15,6 +17,11 @@ public class FiniteSeriesGamma extends FiniteSeries {
 		startValue = 1;
 		endValue = 16;
 		eps = 0.01;
+		
+		df = new DecimalFormat("#.######");
+        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+        decimalFormatSymbols.setDecimalSeparator('.');
+        df.setDecimalFormatSymbols(decimalFormatSymbols);
 	}
 	
 	@Override
@@ -40,7 +47,6 @@ public class FiniteSeriesGamma extends FiniteSeries {
 	}
 	
 	protected String round(double x) {
-		DecimalFormat df = new DecimalFormat("#.######");
 		return df.format(x);
 	}
 }
