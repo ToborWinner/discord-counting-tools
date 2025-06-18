@@ -101,6 +101,7 @@ public class Main {
 		generators.put(new String[] { "l", "language" }, new LanguageNumbersPrefixed());
 		generators.put(new String[] { "exp", "english" }, new EnglishExponentiation());
 		generators.put(new String[] { "fsg" }, new FiniteSeriesGamma());
+		generators.put(new String[] { "inf" }, new InfinityPowerOr());
 
 		return generators;
 	}
