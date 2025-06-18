@@ -17,6 +17,11 @@ public abstract class Exponentiation extends Generator {
 	protected abstract List<NamedValue> getValues();
 
 	/**
+	 * Get an exponent limit.
+	 */
+	protected abstract int getExponentLimit();
+
+	/**
 	 * Get a suffix
 	 */
 	protected String getSuffix() {
@@ -34,28 +39,12 @@ public abstract class Exponentiation extends Generator {
 	public String generate(int n) {
 		List<NamedValue> numbers = getValues();
 
-		for (NamedValue starting : numbers) {
-			String generated = generateRec(numbers, n, starting.getValue(), starting.getName(), 1);
-			if (generated != null)
-				return getPrefix() + generated + getSuffix();
-		}
-
-		for (NamedValue starting : numbers) {
-			String generated = generateRec(numbers, n, starting.getValue(), starting.getName(), 3);
-			if (generated != null)
-				return getPrefix() + generated + getSuffix();
-		}
-
-		for (NamedValue starting : numbers) {
-			String generated = generateRec(numbers, n, starting.getValue(), starting.getName(), 5);
-			if (generated != null)
-				return getPrefix() + generated + getSuffix();
-		}
-
-		for (NamedValue starting : numbers) {
-			String generated = generateRec(numbers, n, starting.getValue(), starting.getName(), 7);
-			if (generated != null)
-				return getPrefix() + generated + getSuffix();
+		for (int exp = 1; exp < getExponentLimit(); exp += 2) {
+			for (NamedValue starting : numbers) {
+				String generated = generateRec(numbers, n, starting.getValue(), starting.getName(), exp);
+				if (generated != null)
+					return getPrefix() + generated + getSuffix();
+			}
 		}
 
 		return null;

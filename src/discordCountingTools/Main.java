@@ -102,6 +102,7 @@ public class Main {
 		generators.put(new String[] { "exp", "english" }, new EnglishExponentiation());
 		generators.put(new String[] { "fsg" }, new FiniteSeriesGamma());
 		generators.put(new String[] { "inf" }, new InfinityPowerOr());
+		generators.put(new String[] { "eexp" }, new EExponentiation());
 
 		return generators;
 	}

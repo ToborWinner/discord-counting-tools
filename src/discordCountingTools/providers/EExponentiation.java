@@ -5,20 +5,20 @@ import discordCountingTools.helpers.NamedValue;
 import java.util.List;
 import discordCountingTools.generators.Exponentiation;
 
-public class EnglishExponentiation extends Exponentiation {
+public class EExponentiation extends Exponentiation {
 
 	@Override
 	public boolean meetsRequirements(int n) {
-		return n <= 8221;
+		return n <= 2205;
 	}
 
 	@Override
 	public int getExponentLimit() {
-		return 8;
+		return 24;
 	}
 
 	@Override
 	protected List<NamedValue> getValues() {
-		return List.of(Constants.PI, Constants.TAU, Constants.PHI, Constants.E);
+		return List.of(Constants.E.getVariant("SUBSCRIPT ROMAN LIGHT LOWERCASE SANS"));
 	}
 }
