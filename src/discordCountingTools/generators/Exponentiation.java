@@ -22,6 +22,13 @@ public abstract class Exponentiation extends Generator {
 	protected abstract int getExponentLimit();
 
 	/**
+	 * Whether to use at the power of -1 * number.
+	 */
+	protected boolean useNegativePowers() {
+		return true;
+	};
+
+	/**
 	 * Get a suffix
 	 */
 	protected String getSuffix() {
@@ -41,7 +48,12 @@ public abstract class Exponentiation extends Generator {
 
 		for (int exp = 1; exp < getExponentLimit(); exp += 2) {
 			for (NamedValue starting : numbers) {
-				String generated = generateRec(numbers, n, starting.getValue(), starting.getName(), exp);
+				String generated;
+				if (useNegativePowers()) {
+					generated = generateRec(numbers, n, starting.getValue(), starting.getName(), exp);
+				} else {
+					generated = generateRecNoNeg(numbers, n, starting.getValue(), starting.getName(), exp);
+				}
 				if (generated != null)
 					return getPrefix() + generated + getSuffix();
 			}
@@ -78,6 +90,27 @@ public abstract class Exponentiation extends Generator {
 	}
 
 	/**
+	 * Recursively generate a working string without using at the power of -1 *
+	 * number.
+	 */
+	private String generateRecNoNeg(List<NamedValue> numbers, double n, double current, String current_str,
+			int amount) {
+		for (NamedValue a : numbers) {
+			double next = Math.pow(a.getValue(), current);
+			if (amount == 0) {
+				if (Math.abs(next - n) < maxError) {
+					return a.getName() + "**" + current_str;
+				}
+			} else {
+				String generated = generateRecNoNeg(numbers, n, next, a.getName() + "**" + current_str, amount - 1);
+				if (generated != null)
+					return generated;
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Test the highest number achievable with each exponent amount until maxAmount
 	 */
 	public void testLimit(int maxAmount) {
@@ -88,7 +121,12 @@ public abstract class Exponentiation extends Generator {
 			while (num < 10000000) {
 				boolean dontBreak = false;
 				for (NamedValue starting : numbers) {
-					String generated = generateRec(numbers, num, starting.getValue(), starting.getName(), cur);
+					String generated;
+					if (useNegativePowers()) {
+						generated = generateRec(numbers, num, starting.getValue(), starting.getName(), cur);
+					} else {
+						generated = generateRecNoNeg(numbers, num, starting.getValue(), starting.getName(), cur);
+					}
 					if (generated != null) {
 						dontBreak = true;
 						break;

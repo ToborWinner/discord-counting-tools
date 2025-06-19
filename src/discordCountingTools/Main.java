@@ -103,6 +103,7 @@ public class Main {
 		generators.put(new String[] { "fsg" }, new FiniteSeriesGamma());
 		generators.put(new String[] { "inf" }, new InfinityPowerOr());
 		generators.put(new String[] { "eexp" }, new EExponentiation());
+		generators.put(new String[] { "egexp" }, new EGammaExponentiation());
 
 		return generators;
 	}
