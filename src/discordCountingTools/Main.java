@@ -51,7 +51,7 @@ public class Main {
 		if (mode.equals("rand")) {
 			gen = getRandomGenerator(generators, num, null);
 		} else if (mode.equals("classic")) {
-			gen = getRandomGenerator(generators, num, "x v e l rs inf eexp egexp");
+			gen = getRandomGenerator(generators, num, "x v e l rs inf infspace eexp egexp");
 		} else {
 			gen = getGeneratorFromKey(generators, mode);
 		}
@@ -87,6 +87,7 @@ public class Main {
 
 		generators.put(new String[] { "1" }, new BinaryOneOr());
 		generators.put(new String[] { "div", "d" }, new BinaryDivOr());
+		generators.put(new String[] { "divunicode", "du" }, new BinaryDivUnicodeOr());
 		generators.put(new String[] { "ninediv", "nd" }, new BinaryNineDivOr());
 		generators.put(new String[] { "n" }, new BinaryDoubleLineOr());
 		generators.put(new String[] { "0" }, new ZeroToZero());
@@ -103,6 +104,7 @@ public class Main {
 		generators.put(new String[] { "exp", "english" }, new EnglishExponentiation());
 		generators.put(new String[] { "fsg" }, new FiniteSeriesGamma());
 		generators.put(new String[] { "inf" }, new InfinityPowerOr());
+		generators.put(new String[] { "infspace" }, new InfinitySpacePowerOr());
 		generators.put(new String[] { "eexp" }, new EExponentiation());
 		generators.put(new String[] { "egexp" }, new EGammaExponentiation());
 
