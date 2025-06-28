@@ -87,6 +87,7 @@ public class Main {
 
 		generators.put(new String[] { "1" }, new BinaryOneOr());
 		generators.put(new String[] { "div", "d" }, new BinaryDivOr());
+		generators.put(new String[] { "ninediv", "nd" }, new BinaryNineDivOr());
 		generators.put(new String[] { "n" }, new BinaryDoubleLineOr());
 		generators.put(new String[] { "0" }, new ZeroToZero());
 		generators.put(new String[] { "01", "c" }, new ComplementZeroOne());
