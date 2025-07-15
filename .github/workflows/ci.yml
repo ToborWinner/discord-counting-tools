@@ -24,7 +24,7 @@ jobs:
         run: nix build .
 
       - name: Copy artefact
-        run: cp result/lib/discord-counting-tools.jar .
+        run: cp result/lib/discord-counting-tools.jar . && chmod 644 discord-counting-tools.jar
 
       - uses: actions/upload-artifact@v4
         with:
