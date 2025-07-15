@@ -1,0 +1,54 @@
+name: Build JAR with Nix
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/determinate-nix-action@main
+
+      - name: Build flake
+        run: nix build .
+
+      - name: Copy artefact
+        run: cp result/lib/discord-counting-tools.jar .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: discord-counting-tools
+          path: discord-counting-tools.jar
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: discord-counting-tools
+          path: .
+
+      - name: Publish GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag:   ${{ github.ref_name }}
+          name:  ${{ github.ref_name }}
+          artifacts: discord-counting-tools.jar
+          generateReleaseNotes: true
+          allowUpdates: true
