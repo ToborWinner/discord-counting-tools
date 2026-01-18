@@ -2,6 +2,10 @@
 
 A script to generate weird messages that are valid for a Discord counting bot.
 
+
+**Warning:**
+Due to recent changes anything that relies on non-arabic numerals may not work.
+
 ## Usage
 
 The command allows you two specify two parameters: mode and number. The number
