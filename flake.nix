@@ -1,10 +1,14 @@
 {
   description = "A Nix-flake-based Java development environment and package";
 
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  };
+
   outputs =
     { self, nixpkgs }:
     let
-      javaVersion = 23;
+      javaVersion = 25;
 
       supportedSystems = [
         "x86_64-linux"
